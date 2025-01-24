@@ -59,9 +59,13 @@ def create_folders_for_range(start_year: int, end_year: int) -> None:
     print(f"FUNCTION CALLED: create_folders_for_range with start_year={start_year} and end_year={end_year}")
 
     # TODO: Implement the actual folder creation logic
+    # Loop through each year in the specified range including the end_year
     for year in range(start_year, end_year + 1):
+        # Constructs the folder name by appending the year to the project path
         folder_name = f"{project_path}/{year}"
+        # Creates the directory for the current year if it doesn't already exist
         pathlib.Path(folder_name).mkdir(parents=True, exist_ok=True)
+        # Logs the created directory to the console
         print(f"Created directory: {folder_name}")
 
 # Function called to create folders for 2020 - 2023.
@@ -88,17 +92,19 @@ def create_folders_from_list(folder_list: list, to_lowercase: bool = True, remov
     # TODO: Log the function call and its arguments
     # TODO: Implement this function and remove the temporary pass
 
-    # Iterates through the folder list and create each folder
+    # Iterates through the folder list and creates each folder
     for folder_name in folder_list:
+        #converts folder names to lowercase
         if to_lowercase:
-             folder_name = folder_name.lower() #makes names lowercase
+             folder_name = folder_name.lower() 
+        #removes spaces from folder names
         if remove_spaces:
-             folder_name = folder_name.replace(" ", "") #removes any spaces in names
-        
-        folder_path = pathlib.Path(project_path) / folder_name #Creates folder path
-
-        folder_path.mkdir(parents=True, exist_ok=True) #Creates the folder if it doesn't already exist
-
+             folder_name = folder_name.replace(" ", "") 
+        #Creates folder path using project path and folder name
+        folder_path = pathlib.Path(project_path) / folder_name 
+        #Creates the folder if it doesn't already exist
+        folder_path.mkdir(parents=True, exist_ok=True) 
+        # Logs the created folder to the console
         print(f"Created folder: {folder_name}")
 
 # Function called to create new folders
@@ -124,12 +130,17 @@ def create_prefixed_folders(folder_list: list, prefix: str) -> None:
     '''
     # Log the function call and its arguments using an f-string
     print(f"FUNCTION CALLED: create_prefixed_folders with folder_list={folder_list} and prefix={prefix}")
-
+    
+    # Generates a list of prefixed folder names
     prefixed_folders = [f"{prefix}{name}" for name in folder_list]
     
+    # Iterates through the prefixed folder list and create directories
     for folder_name in prefixed_folders:
+        # Construct the folder path
         folder_path = pathlib.Path(project_path) / folder_name
+        #Creates the folder if it doesn't already exist
         folder_path.mkdir(parents=True, exist_ok=True)
+        # Logs the created folder to the console
         print(f"Created folder: {folder_name}")
 
 # Function called to create new prefixed folders
@@ -151,28 +162,36 @@ def create_folders_periodically(duration_seconds: int) -> None:
     Arguments:
     duration_seconds -- The time in seconds to wait before creating the next folder.
     '''
-# List of folders to create
+    # List of folders to create
     folder_list: list = ["Folder1", "Folder2", "Folder3", "Folder4"]
-
+    
+    # Initializes the index to track the folders bring created
     index: int = 0
 
-# While statement to create a new folder from the list as long as it doesn't already exists. If it does it will be skipped over. 
+    # While statement that loops through the list to create folders
     while index < len(folder_list):
+        # Gets the current folder name from the list
         folder_name = folder_list[index]
+        # Constructs the full folder path
         folder_path = project_path / folder_name
 
+        # Checks if folder already exists
         if not folder_path.exists():
             folder_path.mkdir(parents=True, exist_ok=True)
             print(f"Created folder: {folder_name}")
         else:
+            # Skips folder creation if already exists
             print(f"Folder {folder_name} already exists. Skipping over.")
-
+        
+        # Moves to the next folder in the list
         index += 1
 
+        # Waits for the specified duration (5 secs) before creating next folder
         if index < len(folder_list):
             print(f"Waiting {duration_seconds} seconds before creating the next folder.")
             time.sleep(duration_seconds)
-
+            
+    # Logs the created folders to the console
     print("All folders have been created.")
 
 #####################################
