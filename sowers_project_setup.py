@@ -18,7 +18,6 @@ TODO: Change the author in this opening docstring
 # Import moduldes from standand library
 # TODO: Import additional modules as needed
 import pathlib
-from pathlib import Path
 import time
 
 # Import local modules
@@ -62,7 +61,7 @@ def create_folders_for_range(start_year: int, end_year: int) -> None:
     # TODO: Implement the actual folder creation logic
     for year in range(start_year, end_year + 1):
         folder_name = f"{project_path}/{year}"
-        Path(folder_name).mkdir(parents=True, exist_ok=True)
+        pathlib.Path(folder_name).mkdir(parents=True, exist_ok=True)
         print(f"Created directory: {folder_name}")
 
 # Function called to create folders for 2020 - 2023.
@@ -96,7 +95,7 @@ def create_folders_from_list(folder_list: list, to_lowercase: bool = True, remov
         if remove_spaces:
              folder_name = folder_name.replace(" ", "") #removes any spaces in names
         
-        folder_path = Path(project_path) / folder_name #Creates folder path
+        folder_path = pathlib.Path(project_path) / folder_name #Creates folder path
 
         folder_path.mkdir(parents=True, exist_ok=True) #Creates the folder if it doesn't already exist
 
@@ -129,7 +128,7 @@ def create_prefixed_folders(folder_list: list, prefix: str) -> None:
     prefixed_folders = [f"{prefix}{name}" for name in folder_list]
     
     for folder_name in prefixed_folders:
-        folder_path = Path(project_path) / folder_name
+        folder_path = pathlib.Path(project_path) / folder_name
         folder_path.mkdir(parents=True, exist_ok=True)
         print(f"Created folder: {folder_name}")
 
