@@ -48,11 +48,12 @@ data_path.mkdir(exist_ok=True)
 
 def create_folders_for_range(start_year: int, end_year: int) -> None:
     '''
-    Create folders for a given range of years.
+    Create folders for a given range of years in the project path.
     
     Arguments:
     start_year -- The starting year of the range (inclusive).
     end_year -- The ending year of the range (inclusive).
+
     '''
 
     # Log the function call and its arguments using an f-string
@@ -77,13 +78,18 @@ def create_folders_for_range(start_year: int, end_year: int) -> None:
 
 def create_folders_from_list(folder_list: list, to_lowercase: bool = True, remove_spaces: bool = True) -> None:
     '''
-    Creates folders from a given list of folder names.The folder names are forced to be lowercase and without spaces.
+    Creates folders from a given list of folder names in the project path.
+    
+    The folder names are all converted (if not already) to be lowercase and without spaces.
 
     This function takes a list of folder names and creates them as directories
     inside the current project path. If the folder already exists, it's skipped.
 
     Arguments:
     folder_list -- A list of folder names (strings) to create.
+    to_lowercase -- If True, converts folder names to lowercase. Default is True.
+    remove_spaces -- If True, removes spaces from folder names. Default is True.
+
     '''
     # Log the function call and its arguments using an f-string
     print(f"FUNCTION CALLED: create_folders_from_list with folder_list={folder_list}, to_lowercase={to_lowercase}, remove_spaces={remove_spaces}")
@@ -127,6 +133,7 @@ def create_prefixed_folders(folder_list: list, prefix: str) -> None:
     Arguments:
     folder_list -- A list of folder names (strings) to create.
     prefix -- A string to prefix each folder name with.
+    
     '''
     # Log the function call and its arguments using an f-string
     print(f"FUNCTION CALLED: create_prefixed_folders with folder_list={folder_list} and prefix={prefix}")
